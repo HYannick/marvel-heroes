@@ -1,0 +1,13 @@
+<div class="hero-list">
+  <div class="hero-list-wrapper">
+    <div v-if="heroes" v-for='hero in heroes.content' :key="hero.id">
+      <div class="hero-thumbnail">
+        <img :src="hero.thumbnail.standard.xlarge"  alt="hero-image"/>
+      </div>
+      <p>{{hero.name}}</p>
+    </div>
+  </div>
+  <div class="pagination">
+    <PaginationVue @updatedPage="updateHeroesList"/>
+  </div>
+</div>
