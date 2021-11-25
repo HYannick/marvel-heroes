@@ -1,0 +1,25 @@
+.welcome-message {
+  margin: 50px auto;
+  color: #fff;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    column-gap: 30px;
+  }
+  h1 {
+    font-family: "StarGradientRail", Avenir, sans-serif;
+    margin: 0;
+    font-size: 80px;
+  }
+  h3 {
+    margin: 0;
+    font-size: 20px;
+  }
+}
+.home {
+  z-index: 2;
+  position: relative;
+  padding-bottom: 10rem;
+}

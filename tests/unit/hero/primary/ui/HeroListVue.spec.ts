@@ -60,4 +60,10 @@ describe("HeroListVue", () => {
       offset: 80,
     });
   });
+
+  it("should emit selected hero", () => {
+    heroListComponent.showDetails(createHeroView());
+    expect(wrapper.emitted().heroSelected).toBeTruthy();
+    expect(wrapper.emitted().heroSelected[0]).toEqual([createHeroView()]);
+  });
 });

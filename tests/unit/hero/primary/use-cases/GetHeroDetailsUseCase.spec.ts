@@ -13,6 +13,15 @@ describe("GetHeroDetails use case", () => {
     const getHeroDetailsUseCase = new GetHeroDetailsUseCase(heroRepository);
     const heroDetails = await getHeroDetailsUseCase.execute(1234);
     expect(heroRepository.getHeroDetails).toHaveBeenCalledWith(1234);
-    expect(heroDetails).toEqual( HeroView.fromDomain(createHero()));
+    expect(heroDetails).toEqual(HeroView.fromDomain(createHero()));
+  });
+
+  it("should return null if no hero details", async () => {
+    heroRepository = {
+      getHeroDetails: jest.fn().mockResolvedValue(null),
+    };
+    const getHeroDetailsUseCase = new GetHeroDetailsUseCase(heroRepository);
+    const heroDetails = await getHeroDetailsUseCase.execute(1234);
+    expect(heroDetails).toBeNull();
   });
 });

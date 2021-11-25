@@ -1,12 +1,16 @@
 <div class="hero-list">
-  <div class="hero-list-wrapper">
-    <div v-if="heroes" v-for='hero in heroes.content' :key="hero.id">
+  <div class="pagination">
+    <PaginationVue @updatedPage="updateHeroesList"/>
+  </div>
+  <div class="hero-list-wrapper grid" v-if="heroes && !pending">
+    <div class="hero-card grid__item" v-for='hero in heroes.content' :key="hero.id" @click="showDetails(hero)">
       <div class="hero-thumbnail">
         <img :src="hero.thumbnail.standard.xlarge"  alt="hero-image"/>
       </div>
-      <p>{{hero.name}}</p>
+      <p class="hero-name">{{hero.name}}</p>
     </div>
   </div>
+  <ListSkeletonVue :numberOfItems="limit" v-else />
   <div class="pagination">
     <PaginationVue @updatedPage="updateHeroesList"/>
   </div>

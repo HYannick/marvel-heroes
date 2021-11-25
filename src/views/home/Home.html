@@ -1,0 +1,15 @@
+<div class="home">
+  <div class="welcome-message">
+    <div>
+      <img width="300" alt="MarvelLogo" src="../../assets/marvel_logo.svg" />
+      <h1>CHARACTERS</h1>
+    </div>
+    <h3>Get hooked on a hearty helping of heroes and villains!</h3>
+  </div>
+  <HeroListVue @heroSelected="setCurrentDetails" />
+  <HeroDetailsVue
+    v-if="currentDetails"
+    :details="currentDetails"
+    @closeDetails="resetDetails"
+  />
+</div>

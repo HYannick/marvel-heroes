@@ -1,0 +1,12 @@
+<div class="hero-details-container">
+  <div class="hero-details">
+    <button class="back-button" @click="goBack">Go Back</button>
+    <div class="hero-details-image">
+      <img :src="details.thumbnail.fullsize" alt="hero-image">
+    </div>
+    <div class="hero-details-content">
+      <h1>{{details.name}}</h1>
+      <p>{{details.description}}</p>
+    </div>
+  </div>
+</div>

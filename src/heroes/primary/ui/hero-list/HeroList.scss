@@ -1,0 +1,102 @@
+.grid {
+  display: grid;
+  align-items: center;
+  padding: 3rem 3rem 15rem 3rem;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  grid-template-columns: repeat(3,calc(100% / 3));
+}
+.hero-list-wrapper {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  .hero-card {
+    flex: 1;
+    margin: 0 0 7rem 0;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      .hero-thumbnail {
+        transform: translate(0, 0);
+        img {
+          filter: grayscale(0);
+          opacity: 1;
+        }
+      }
+    }
+    &:after {
+      content: '';
+      background: crimson;
+      width: 200px;
+      height: 250px;
+      clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 65%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+    .hero-thumbnail {
+      width: 200px;
+      height: 250px;
+      transition: transform 0.3s;
+      transform: translate(-10px, -20px);
+      clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 65%);
+      overflow: hidden;
+      position: relative;
+      background: #000;
+      z-index: 1;
+      img {
+        filter: grayscale(1);
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+        object-fit: cover;
+        transition: opacity 0.3s, filter 0.3s;
+      }
+    }
+    .hero-name {
+      display: block;
+      color: #fff;
+      text-align: left;
+      font-family: 'StarGradientRail', Avenir, sans-serif;
+      font-size: 40px;
+      position: absolute;
+      bottom: -30px;
+      left: 10px;
+      width: 150px;
+      margin: 0;
+      z-index: 1;
+    }
+  }
+}
+
+@media screen and (min-width: 55em) {
+  .grid {
+    display: grid;
+    align-items: center;
+    padding: 10rem 3rem 5rem 3rem;
+    grid-row-gap: 2rem;
+    grid-template-columns: repeat(3, calc(100% / 3));
+  }
+  .grid__item {
+    margin: 0;
+  }
+}
+
+
+@media screen and (min-width: 80em) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid__item:nth-child(4n-2) {
+    margin-top: -12rem;
+  }
+  .grid__item:nth-child(4n) {
+    margin-top: -12rem;
+  }
+}

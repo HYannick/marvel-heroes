@@ -8,10 +8,9 @@ module.exports = {
     "src/**/*.{js,ts,vue}",
     "!src/**/*.component.ts",
     "!src/main.ts",
-    "!src/router",
-    "!src/store",
+    "!src/router/*",
+    "!src/store/*",
     "!src/registerServiceWorker.ts",
-    "!src/common/primary/routes.ts",
     "!**/*.d.ts",
   ],
   coverageReporters: [
