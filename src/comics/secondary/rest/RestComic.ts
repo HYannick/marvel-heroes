@@ -1,21 +1,30 @@
-import { Hero } from '@/heroes/domain/Hero';
+import { Comic } from '@/comics/domain/Comic';
+import { ComicUrl } from '@/comics/domain/Enums';
 
-export type RestHeroThumbnail = { path: string; extension: string };
-export class RestHero {
+export type RestThumbnail = { path: string; extension: string };
+
+interface RestComicUrl {
+  type: string;
+  url: string;
+}
+
+export class RestComic {
   constructor(
     public readonly id: number,
-    public readonly name: string,
+    public readonly title: string,
     public readonly description: string,
     public readonly modified: string,
-    public readonly thumbnail: RestHeroThumbnail
+    public readonly thumbnail: RestThumbnail,
+    public readonly urls: RestComicUrl[]
   ) {}
 
-  static toDomain(restHero: RestHero): Hero {
-    const { path, extension } = restHero.thumbnail;
-    return Hero.fromProperties({
-      id: restHero.id,
-      name: restHero.name,
-      description: restHero.description,
+  static toDomain(restComic: RestComic): Comic {
+    const { path, extension } = restComic.thumbnail;
+    const restComicUrl = restComic.urls.find(url => url.type === ComicUrl.DETAIL);
+    return Comic.fromProperties({
+      id: restComic.id,
+      title: restComic.title,
+      description: restComic.description,
       thumbnail: {
         portrait: {
           small: `${path}/portrait_small.${extension}`,
@@ -41,7 +50,8 @@ export class RestHero {
         fullsize: `${path}.${extension}`,
         detail: `${path}/detail.${extension}`,
       },
-      modified: new Date(restHero.modified),
+      modified: new Date(restComic.modified),
+      url: restComicUrl ? restComicUrl.url : '',
     });
   }
 }

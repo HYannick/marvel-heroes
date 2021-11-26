@@ -32,13 +32,7 @@ export class Hero {
   ) {}
 
   static fromProperties(properties: HeroProperties): Hero {
-    return new Hero(
-      properties.id,
-      properties.name,
-      properties.description,
-      properties.modified,
-      properties.thumbnail
-    );
+    return new Hero(properties.id, properties.name, properties.description, properties.modified, properties.thumbnail);
   }
 
   get properties(): HeroProperties {

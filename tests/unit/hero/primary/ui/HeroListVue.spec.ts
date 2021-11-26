@@ -23,7 +23,7 @@ describe('HeroListVue', () => {
   beforeEach(() => {
     heroService = {
       getHeroes: jest.fn().mockResolvedValue(createHeroViewPage()),
-    } as any;
+    };
     createWrapper(heroService);
   });
 

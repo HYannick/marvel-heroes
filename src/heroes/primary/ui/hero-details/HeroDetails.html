@@ -8,5 +8,16 @@
       <h1>{{details.name}}</h1>
       <p>{{details.description}}</p>
     </div>
+    <div class="hero-related-comics">
+      <div class="related-comics">
+        <a :href="comic.url" class="comic" v-for="comic in relatedComics" :key="comic.id" target="_blank">
+          <div class="comic-thumbnail">
+            <img :src="comic.thumbnail.portrait.xlarge"  alt="comic-image"/>
+          </div>
+          <p class="comic-title">{{comic.title}}</p>
+        </a>
+      </div>
+    </div>
   </div>
+
 </div>
