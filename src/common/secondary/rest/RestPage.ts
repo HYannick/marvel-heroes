@@ -1,4 +1,4 @@
-import { Page } from "@/common/domain/Page";
+import { Page } from '@/common/domain/Page';
 
 export interface RestPage<T> {
   results: T[];

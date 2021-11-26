@@ -1,5 +1,5 @@
-import { Vue } from "vue-class-component";
-import { Prop } from "vue-property-decorator";
+import { Vue } from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 
 export default class PaginationComponent extends Vue {
   @Prop()
@@ -12,14 +12,13 @@ export default class PaginationComponent extends Vue {
 
   goNext() {
     this.currentPage += 1;
-    if (this.currentPage > this.totalNumberOfPages)
-      this.currentPage = this.totalNumberOfPages;
-    this.$emit("updatedPage", this.currentPage);
+    if (this.currentPage > this.totalNumberOfPages) this.currentPage = this.totalNumberOfPages;
+    this.$emit('updatedPage', this.currentPage);
   }
 
   goPrev() {
     this.currentPage -= 1;
     if (this.currentPage < 1) this.currentPage = 1;
-    this.$emit("updatedPage", this.currentPage);
+    this.$emit('updatedPage', this.currentPage);
   }
 }

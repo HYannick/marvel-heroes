@@ -1,10 +1,10 @@
-import { HeroRepository } from "@/heroes/domain/repository/HeroRepository";
-import { GetHeroesUseCase } from "@/heroes/primary/use-cases/GetHeroesUseCase";
-import { RestPagination } from "@/common/secondary/rest/RestPagination";
-import { HeroView } from "@/heroes/primary/view/HeroView";
-import { Page } from "@/common/domain/Page";
-import { HeroId } from "@/heroes/domain/HeroId";
-import { GetHeroDetailsUseCase } from "@/heroes/primary/use-cases/GetHeroDetailsUseCase";
+import { HeroRepository } from '@/heroes/domain/repository/HeroRepository';
+import { GetHeroesUseCase } from '@/heroes/primary/use-cases/GetHeroesUseCase';
+import { RestPagination } from '@/common/secondary/rest/RestPagination';
+import { HeroView } from '@/heroes/primary/view/HeroView';
+import { Page } from '@/common/domain/Page';
+import { HeroId } from '@/heroes/domain/HeroId';
+import { GetHeroDetailsUseCase } from '@/heroes/primary/use-cases/GetHeroDetailsUseCase';
 
 export class HeroService {
   private getHeroesUseCase: GetHeroesUseCase;

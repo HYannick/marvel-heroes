@@ -1,10 +1,10 @@
-import { Options, Vue } from "vue-class-component";
-import { HeroListVue } from "@/heroes/primary/ui/hero-list";
-import { HeroDetailsVue } from "@/heroes/primary/ui/hero-details";
-import { HeroView } from "@/heroes/primary/view/HeroView";
+import { Options, Vue } from 'vue-class-component';
+import { HeroListVue } from '@/heroes/primary/ui/hero-list';
+import { HeroDetailsVue } from '@/heroes/primary/ui/hero-details';
+import { HeroView } from '@/heroes/primary/view/HeroView';
 
 @Options({
-  name: "Home",
+  name: 'Home',
   components: {
     HeroListVue,
     HeroDetailsVue,

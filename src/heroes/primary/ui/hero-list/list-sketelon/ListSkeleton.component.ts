@@ -1,4 +1,3 @@
-import { Vue } from "vue-class-component";
-import { Prop } from "vue-property-decorator";
+import { Vue } from 'vue-class-component';
 
 export default class ListSkeleton extends Vue {}

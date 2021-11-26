@@ -1,4 +1,4 @@
-import { Hero, HeroThumbnail } from "@/heroes/domain/Hero";
+import { Hero, HeroThumbnail } from '@/heroes/domain/Hero';
 
 export class HeroView {
   constructor(

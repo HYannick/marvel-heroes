@@ -1,7 +1,7 @@
-import { HeroRepository } from "@/heroes/domain/repository/HeroRepository";
-import { RestPagination } from "@/common/secondary/rest/RestPagination";
-import { HeroView } from "@/heroes/primary/view/HeroView";
-import { Page } from "@/common/domain/Page";
+import { HeroRepository } from '@/heroes/domain/repository/HeroRepository';
+import { RestPagination } from '@/common/secondary/rest/RestPagination';
+import { HeroView } from '@/heroes/primary/view/HeroView';
+import { Page } from '@/common/domain/Page';
 
 export class GetHeroesUseCase {
   constructor(private heroRepository: HeroRepository) {}
@@ -11,7 +11,7 @@ export class GetHeroesUseCase {
 
     return {
       ...page,
-      content: page.content.map((hero) => HeroView.fromDomain(hero)),
+      content: page.content.map(hero => HeroView.fromDomain(hero)),
     };
   }
 }

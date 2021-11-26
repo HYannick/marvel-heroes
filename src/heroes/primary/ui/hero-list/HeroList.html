@@ -1,6 +1,6 @@
 <div class="hero-list">
   <div class="pagination">
-    <PaginationVue @updatedPage="updateHeroesList"/>
+    <PaginationVue @updatedPage="getHeroes"/>
   </div>
   <div class="hero-list-wrapper grid" v-if="heroes && !pending">
     <div class="hero-card grid__item" v-for='hero in heroes.content' :key="hero.id" @click="showDetails(hero)">
@@ -12,6 +12,6 @@
   </div>
   <ListSkeletonVue :numberOfItems="limit" v-else />
   <div class="pagination">
-    <PaginationVue @updatedPage="updateHeroesList"/>
+    <PaginationVue @updatedPage="getHeroes"/>
   </div>
 </div>

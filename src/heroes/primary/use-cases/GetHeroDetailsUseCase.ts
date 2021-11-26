@@ -1,6 +1,6 @@
-import { HeroRepository } from "@/heroes/domain/repository/HeroRepository";
-import { HeroView } from "@/heroes/primary/view/HeroView";
-import { HeroId } from "@/heroes/domain/HeroId";
+import { HeroRepository } from '@/heroes/domain/repository/HeroRepository';
+import { HeroView } from '@/heroes/primary/view/HeroView';
+import { HeroId } from '@/heroes/domain/HeroId';
 
 export class GetHeroDetailsUseCase {
   constructor(private heroRepository: HeroRepository) {}

@@ -1,8 +1,5 @@
-import { VueWrapper, shallowMount } from "@vue/test-utils";
-import {
-  PaginationComponent,
-  PaginationVue,
-} from "@/common/primary/ui/pagination";
+import { VueWrapper, shallowMount } from '@vue/test-utils';
+import { PaginationComponent, PaginationVue } from '@/common/primary/ui/pagination';
 
 let wrapper: VueWrapper<PaginationComponent>;
 let paginationComponent: PaginationComponent;
@@ -18,7 +15,7 @@ const DEFAULT_ITEMS_PER_PAGE = 20;
 const DEFAULT_TOTAL_PAGES = 5;
 
 const createWrapper = (customProps?: Partial<WrapperProps>) => {
-  wrapper = shallowMount<PaginationComponent>(PaginationVue, {
+  wrapper = shallowMount(PaginationVue, {
     props: {
       activePage: DEFAULT_ACTIVE_PAGE,
       numberOfItemsPerPage: DEFAULT_ITEMS_PER_PAGE,
@@ -29,17 +26,17 @@ const createWrapper = (customProps?: Partial<WrapperProps>) => {
   paginationComponent = wrapper.vm;
   return paginationComponent;
 };
-describe("PaginationVue", () => {
-  it("should be a vue instance", () => {
+describe('PaginationVue', () => {
+  it('should be a vue instance', () => {
     createWrapper();
     expect(wrapper.exists()).toBeTruthy();
   });
 
-  it("should have default offset and limit", () => {
+  it('should have default offset and limit', () => {
     expect(paginationComponent.currentPage).toBe(1);
   });
 
-  it("should go to next page", () => {
+  it('should go to next page', () => {
     createWrapper();
     paginationComponent.goNext();
     expect(paginationComponent.currentPage).toBe(2);
@@ -47,7 +44,7 @@ describe("PaginationVue", () => {
     expect(paginationComponent.currentPage).toBe(3);
   });
 
-  it("should go to previous page", () => {
+  it('should go to previous page', () => {
     createWrapper();
     paginationComponent.goNext();
     paginationComponent.goNext();
@@ -55,20 +52,20 @@ describe("PaginationVue", () => {
     expect(paginationComponent.currentPage).toBe(2);
   });
 
-  it("should set currentPage at 1 if currentPage under 1", () => {
+  it('should set currentPage at 1 if currentPage under 1', () => {
     createWrapper();
     paginationComponent.goPrev();
     expect(paginationComponent.currentPage).toBe(1);
   });
 
-  it("should set currentPage to max if maxPage", () => {
+  it('should set currentPage to max if maxPage', () => {
     createWrapper();
     paginationComponent.currentPage = 5;
     paginationComponent.goNext();
     expect(paginationComponent.currentPage).toBe(5);
   });
 
-  it("should emit event on navigation", () => {
+  it('should emit event on navigation', () => {
     createWrapper();
     paginationComponent.goNext();
     expect(wrapper.emitted().updatedPage).toBeTruthy();

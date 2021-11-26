@@ -1,9 +1,9 @@
-import { RestHero } from "@/heroes/secondary/rest/RestHero";
-import { Hero, HeroProperties } from "@/heroes/domain/Hero";
-import { Page } from "@/common/domain/Page";
-import { HeroView } from "@/heroes/primary/view/HeroView";
+import { RestHero } from '@/heroes/secondary/rest/RestHero';
+import { Hero, HeroProperties } from '@/heroes/domain/Hero';
+import { Page } from '@/common/domain/Page';
+import { HeroView } from '@/heroes/primary/view/HeroView';
 
-export const mockHeroThumbnail = (path = "jessica", extension = "jpg") => ({
+export const mockHeroThumbnail = (path = 'jessica', extension = 'jpg') => ({
   portrait: {
     small: `${path}/portrait_small.${extension}`,
     medium: `${path}/portrait_medium.${extension}`,
@@ -31,12 +31,12 @@ export const mockHeroThumbnail = (path = "jessica", extension = "jpg") => ({
 
 export const createRestHero = (opts?: Partial<RestHero>): RestHero => ({
   id: 1234,
-  name: "Jessica Jones",
-  description: "a drunk super girl",
-  modified: "10/12/1993",
+  name: 'Jessica Jones',
+  description: 'a drunk super girl',
+  modified: '10/12/1993',
   thumbnail: {
-    path: "jessica",
-    extension: "jpg",
+    path: 'jessica',
+    extension: 'jpg',
   },
   ...opts,
 });
@@ -44,20 +44,16 @@ export const createRestHero = (opts?: Partial<RestHero>): RestHero => ({
 export const createHero = (opts?: Partial<HeroProperties>): Hero =>
   Hero.fromProperties({
     id: 1234,
-    name: "Jessica Jones",
-    description: "a drunk super girl",
-    modified: new Date("10/12/1993"),
+    name: 'Jessica Jones',
+    description: 'a drunk super girl',
+    modified: new Date('10/12/1993'),
     thumbnail: mockHeroThumbnail(),
     ...opts,
   });
 
-export const createHeroView = (opts?: Partial<HeroProperties>): HeroView =>
-  HeroView.fromDomain(createHero({ ...opts }));
+export const createHeroView = (opts?: Partial<HeroProperties>): HeroView => HeroView.fromDomain(createHero({ ...opts }));
 
-
-export const createHeroPage = (
-  opts?: Partial<Page<HeroProperties>>
-): Page<HeroProperties> => ({
+export const createHeroPage = (opts?: Partial<Page<HeroProperties>>): Page<HeroProperties> => ({
   content: [createHero().properties, createHero().properties],
   itemsNumber: 20,
   itemsPerPage: 3,
@@ -65,9 +61,7 @@ export const createHeroPage = (
   ...opts,
 });
 
-export const createHeroViewPage = (
-  opts?: Partial<Page<HeroProperties>>
-): Page<HeroView> => ({
+export const createHeroViewPage = (opts?: Partial<Page<HeroProperties>>): Page<HeroView> => ({
   content: [createHeroView(), createHeroView()],
   itemsNumber: 20,
   itemsPerPage: 3,

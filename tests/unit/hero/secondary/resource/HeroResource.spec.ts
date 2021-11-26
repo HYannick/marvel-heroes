@@ -1,19 +1,16 @@
-import { HeroResource } from "@/heroes/secondary/resource/HeroResource";
-import {
-  createRestHero,
-  mockHeroThumbnail,
-} from "../../fixtures/hero.fixtures";
+import { HeroResource } from '@/heroes/secondary/resource/HeroResource';
+import { createRestHero, mockHeroThumbnail } from '../../fixtures/hero.fixtures';
 
 let axios: any;
 
-describe("Hero Resource", () => {
+describe('Hero Resource', () => {
   beforeEach(() => {
     axios = {
       get: jest.fn(),
     };
   });
 
-  it("should get Marvel heroes", async () => {
+  it('should get Marvel heroes', async () => {
     expect.assertions(3);
     axios.get.mockResolvedValue({
       data: {
@@ -23,11 +20,11 @@ describe("Hero Resource", () => {
           total: 20,
           offset: 0,
           results: [
-            createRestHero({ name: "Spiderman", description: "the spidey" }),
+            createRestHero({ name: 'Spiderman', description: 'the spidey' }),
             createRestHero({
               id: 5678,
-              name: "Ms Marvel",
-              description: "the true hero",
+              name: 'Ms Marvel',
+              description: 'the true hero',
             }),
           ],
         },
@@ -37,30 +34,27 @@ describe("Hero Resource", () => {
     const params = { limit: 20, offset: 20 };
     const heroesList = await heroResource.getHeroes(params);
     expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith(
-      `${process.env.VUE_APP_BACKEND_BASE_URL}/v1/public/characters`,
-      {
-        params: {
-          limit: 20,
-          offset: 20,
-          apikey: process.env.VUE_APP_BACKEND_API_KEY,
-        },
-      }
-    );
+    expect(axios.get).toHaveBeenCalledWith(`${process.env.VUE_APP_BACKEND_BASE_URL}/v1/public/characters`, {
+      params: {
+        limit: 20,
+        offset: 20,
+        apikey: process.env.VUE_APP_BACKEND_API_KEY,
+      },
+    });
     expect(heroesList).toEqual({
       content: [
         {
           id: 1234,
-          name: "Spiderman",
-          description: "the spidey",
-          modified: new Date("10/12/1993"),
+          name: 'Spiderman',
+          description: 'the spidey',
+          modified: new Date('10/12/1993'),
           thumbnail: mockHeroThumbnail(),
         },
         {
           id: 5678,
-          name: "Ms Marvel",
-          description: "the true hero",
-          modified: new Date("10/12/1993"),
+          name: 'Ms Marvel',
+          description: 'the true hero',
+          modified: new Date('10/12/1993'),
           thumbnail: mockHeroThumbnail(),
         },
       ],
@@ -70,7 +64,7 @@ describe("Hero Resource", () => {
     });
   });
 
-  it("should get Marvel Hero details", async () => {
+  it('should get Marvel Hero details', async () => {
     expect.assertions(3);
     axios.get.mockResolvedValue({
       data: {
@@ -82,20 +76,19 @@ describe("Hero Resource", () => {
     const heroResource = new HeroResource(axios);
     const heroDetails = await heroResource.getHeroDetails(12345);
     expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith(
-      `${process.env.VUE_APP_BACKEND_BASE_URL}/v1/public/characters/12345`,
-      { params: { apikey: "c93257b8bd3769e578d087c99c2ddadc" } }
-    );
+    expect(axios.get).toHaveBeenCalledWith(`${process.env.VUE_APP_BACKEND_BASE_URL}/v1/public/characters/12345`, {
+      params: { apikey: 'c93257b8bd3769e578d087c99c2ddadc' },
+    });
     expect(heroDetails).toEqual({
       id: 1234,
-      name: "Jessica Jones",
-      description: "a drunk super girl",
-      modified: new Date("10/12/1993"),
+      name: 'Jessica Jones',
+      description: 'a drunk super girl',
+      modified: new Date('10/12/1993'),
       thumbnail: mockHeroThumbnail(),
     });
   });
 
-  it("should fail to get marvel heroes", async () => {
+  it('should fail to get marvel heroes', async () => {
     expect.assertions(1);
     axios.get.mockRejectedValue({
       data: {
@@ -116,7 +109,7 @@ describe("Hero Resource", () => {
       numberOfPages: 0,
     });
   });
-  it("should fail to get marvel heroes", async () => {
+  it('should fail to get marvel heroes', async () => {
     expect.assertions(1);
     axios.get.mockRejectedValue({
       data: {
