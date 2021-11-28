@@ -3,6 +3,7 @@ import { Inject, Prop } from 'vue-property-decorator';
 import { HeroService } from '@/heroes/primary/HeroService';
 import { HeroView } from '@/heroes/primary/view/HeroView';
 import { ComicView } from '@/comics/primary/view/ComicView';
+import { HeroUrlType } from '@/heroes/domain/Hero';
 
 export default class HeroDetailsComponent extends Vue {
   @Prop()
@@ -13,6 +14,10 @@ export default class HeroDetailsComponent extends Vue {
 
   relatedComics: ComicView[] = [];
 
+  created() {
+    this.getComics();
+  }
+
   goBack() {
     this.$emit('closeDetails');
   }
@@ -22,7 +27,7 @@ export default class HeroDetailsComponent extends Vue {
     this.relatedComics = comicsPage.content;
   }
 
-  created() {
-    this.getComics();
+  get comicListUrl() {
+    return this.details.urls.find(url => url.type === HeroUrlType.COMIC_LIST);
   }
 }

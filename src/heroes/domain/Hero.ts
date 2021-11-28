@@ -1,25 +1,23 @@
-export type HeroThumbnailSizes = {
-  small: string;
-  medium: string;
-  xlarge: string;
-  fantastic: string;
-  uncanny: string;
-};
-
-export interface HeroThumbnail {
-  portrait: HeroThumbnailSizes;
-  standard: HeroThumbnailSizes;
-  landscape: HeroThumbnailSizes;
-  fullsize: string;
-  detail: string;
-}
+import { Thumbnail } from '@/common/domain/Thumbnail';
 
 export interface HeroProperties {
   id: number;
   name: string;
   description: string;
   modified: Date;
-  thumbnail: HeroThumbnail;
+  thumbnail: Thumbnail;
+  urls: HeroUrl[];
+}
+
+export enum HeroUrlType {
+  DETAIL = 'detail',
+  WIKI = 'wiki',
+  COMIC_LIST = 'comiclink',
+}
+
+export interface HeroUrl {
+  type: HeroUrlType;
+  url: string;
 }
 
 export class Hero {
@@ -28,11 +26,12 @@ export class Hero {
     private readonly name: string,
     private readonly description: string,
     private readonly modified: Date,
-    private readonly thumbnail: HeroThumbnail
+    private readonly thumbnail: Thumbnail,
+    private readonly urls: HeroUrl[]
   ) {}
 
   static fromProperties(properties: HeroProperties): Hero {
-    return new Hero(properties.id, properties.name, properties.description, properties.modified, properties.thumbnail);
+    return new Hero(properties.id, properties.name, properties.description, properties.modified, properties.thumbnail, properties.urls);
   }
 
   get properties(): HeroProperties {
@@ -42,6 +41,7 @@ export class Hero {
       description: this.description,
       modified: this.modified,
       thumbnail: this.thumbnail,
+      urls: this.urls,
     };
   }
 }

@@ -1,23 +1,28 @@
 <div class="hero-details-container">
   <div class="hero-details">
     <button class="back-button" @click="goBack">Go Back</button>
-    <div class="hero-details-image">
-      <img :src="details.thumbnail.fullsize" alt="hero-image">
+    <div class="hero-details-wrapper">
+      <div class="hero-details-image">
+        <img :src="details.thumbnail.fullsize" alt="hero-image">
+      </div>
+      <div class="hero-details-content">
+        <h1>{{details.name}}</h1>
+        <p>{{details.description}}</p>
+      </div>
     </div>
-    <div class="hero-details-content">
-      <h1>{{details.name}}</h1>
-      <p>{{details.description}}</p>
-    </div>
-    <div class="hero-related-comics">
-      <div class="related-comics">
-        <a :href="comic.url" class="comic" v-for="comic in relatedComics" :key="comic.id" target="_blank">
+  </div>
+  <div class="hero-related-comics">
+    <h3>Related comics</h3>
+    <div class="related-comics">
+      <div class="related-comics-list">
+        <a :href="comic.url" class="comic" v-for="comic in relatedComics.slice(0, 5)" :key="comic.id" target="_blank">
           <div class="comic-thumbnail">
             <img :src="comic.thumbnail.portrait.xlarge"  alt="comic-image"/>
           </div>
           <p class="comic-title">{{comic.title}}</p>
         </a>
       </div>
+      <a class='button button-white' :href="comicListUrl.url" target="_blank">View all</a>
     </div>
   </div>
-
 </div>

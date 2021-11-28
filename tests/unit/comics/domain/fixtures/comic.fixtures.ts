@@ -2,32 +2,7 @@ import { RestComic } from '@/comics/secondary/rest/RestComic';
 import { Comic, ComicProperties } from '@/comics/domain/Comic';
 import { Page } from '@/common/domain/Page';
 import { ComicView } from '@/comics/primary/view/ComicView';
-
-export const mockComicThumbnail = (path = 'jessica', extension = 'jpg') => ({
-  portrait: {
-    small: `${path}/portrait_small.${extension}`,
-    medium: `${path}/portrait_medium.${extension}`,
-    xlarge: `${path}/portrait_xlarge.${extension}`,
-    fantastic: `${path}/portrait_fantastic.${extension}`,
-    uncanny: `${path}/portrait_uncanny.${extension}`,
-  },
-  standard: {
-    small: `${path}/standard_small.${extension}`,
-    medium: `${path}/standard_medium.${extension}`,
-    xlarge: `${path}/standard_xlarge.${extension}`,
-    fantastic: `${path}/standard_fantastic.${extension}`,
-    uncanny: `${path}/standard_uncanny.${extension}`,
-  },
-  landscape: {
-    small: `${path}/landscape_small.${extension}`,
-    medium: `${path}/landscape_medium.${extension}`,
-    xlarge: `${path}/landscape_xlarge.${extension}`,
-    fantastic: `${path}/landscape_fantastic.${extension}`,
-    uncanny: `${path}/landscape_uncanny.${extension}`,
-  },
-  fullsize: `${path}.${extension}`,
-  detail: `${path}/detail.${extension}`,
-});
+import { mockThumbnail } from '@unit/common/domain/fixtures/thumbnail.fixtures';
 
 export const createRestComic = (opts?: Partial<RestComic>): RestComic => ({
   id: 1234,
@@ -57,7 +32,7 @@ export const createComic = (opts?: Partial<ComicProperties>): Comic =>
     title: 'The amazing Jessica Jones',
     description: 'a drunk super girl',
     modified: new Date('10/12/1993'),
-    thumbnail: mockComicThumbnail(),
+    thumbnail: mockThumbnail(),
     url: 'comicDetailsURL',
     ...opts,
   });

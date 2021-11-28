@@ -1,25 +1,11 @@
-export type ComicThumbnailSizes = {
-  small: string;
-  medium: string;
-  xlarge: string;
-  fantastic: string;
-  uncanny: string;
-};
-
-export interface ComicThumbnail {
-  portrait: ComicThumbnailSizes;
-  standard: ComicThumbnailSizes;
-  landscape: ComicThumbnailSizes;
-  fullsize: string;
-  detail: string;
-}
+import { Thumbnail } from '@/common/domain/Thumbnail';
 
 export interface ComicProperties {
   id: number;
   title: string;
   description: string;
   modified: Date;
-  thumbnail: ComicThumbnail;
+  thumbnail: Thumbnail;
   url: string;
 }
 
@@ -29,7 +15,7 @@ export class Comic {
     private readonly title: string,
     private readonly description: string,
     private readonly modified: Date,
-    private readonly thumbnail: ComicThumbnail,
+    private readonly thumbnail: Thumbnail,
     private readonly url: string
   ) {}
 

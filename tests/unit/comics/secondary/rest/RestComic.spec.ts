@@ -1,5 +1,6 @@
 import { RestComic } from '@/comics/secondary/rest/RestComic';
-import { createRestComic, mockComicThumbnail } from '@unit/comics/domain/fixtures/comic.fixtures';
+import { createRestComic } from '@unit/comics/domain/fixtures/comic.fixtures';
+import { mockThumbnail } from '@unit/common/domain/fixtures/thumbnail.fixtures';
 
 const comicUrls = [
   {
@@ -35,7 +36,7 @@ describe('RestComic', () => {
       title: 'The amazing Jessica Jones',
       description: 'a drunk super girl',
       modified: new Date('10/12/1993'),
-      thumbnail: mockComicThumbnail(),
+      thumbnail: mockThumbnail(),
       url: 'comicDetailsURL',
     });
   });
@@ -47,7 +48,7 @@ describe('RestComic', () => {
       title: 'The amazing Jessica Jones',
       description: 'a drunk super girl',
       modified: new Date('10/12/1993'),
-      thumbnail: mockComicThumbnail(),
+      thumbnail: mockThumbnail(),
       url: '',
     });
   });

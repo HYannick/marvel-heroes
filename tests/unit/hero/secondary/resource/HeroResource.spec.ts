@@ -1,6 +1,7 @@
 import { HeroResource } from '@/heroes/secondary/resource/HeroResource';
-import { createRestHero, mockHeroThumbnail } from '../../fixtures/hero.fixtures';
-import { createRestComic, mockComicThumbnail } from '@unit/comics/domain/fixtures/comic.fixtures';
+import { createRestHero } from '../../fixtures/hero.fixtures';
+import { createRestComic } from '@unit/comics/domain/fixtures/comic.fixtures';
+import { mockThumbnail } from '@unit/common/domain/fixtures/thumbnail.fixtures';
 
 let axios: any;
 
@@ -85,14 +86,42 @@ describe('Hero Resource', () => {
           name: 'Spiderman',
           description: 'the spidey',
           modified: new Date('10/12/1993'),
-          thumbnail: mockHeroThumbnail(),
+          thumbnail: mockThumbnail(),
+          urls: [
+            {
+              type: 'detail',
+              url: 'detailsUrl',
+            },
+            {
+              type: 'wiki',
+              url: 'wikiUrl',
+            },
+            {
+              type: 'comiclink',
+              url: 'comicLinkUrl',
+            },
+          ],
         },
         {
           id: 5678,
           name: 'Ms Marvel',
           description: 'the true hero',
           modified: new Date('10/12/1993'),
-          thumbnail: mockHeroThumbnail(),
+          thumbnail: mockThumbnail(),
+          urls: [
+            {
+              type: 'detail',
+              url: 'detailsUrl',
+            },
+            {
+              type: 'wiki',
+              url: 'wikiUrl',
+            },
+            {
+              type: 'comiclink',
+              url: 'comicLinkUrl',
+            },
+          ],
         },
       ],
       itemsNumber: 20,
@@ -121,7 +150,21 @@ describe('Hero Resource', () => {
       name: 'Jessica Jones',
       description: 'a drunk super girl',
       modified: new Date('10/12/1993'),
-      thumbnail: mockHeroThumbnail(),
+      thumbnail: mockThumbnail(),
+      urls: [
+        {
+          type: 'detail',
+          url: 'detailsUrl',
+        },
+        {
+          type: 'wiki',
+          url: 'wikiUrl',
+        },
+        {
+          type: 'comiclink',
+          url: 'comicLinkUrl',
+        },
+      ],
     });
   });
 
@@ -178,7 +221,7 @@ describe('Hero Resource', () => {
           title: 'The amazing Jessica Jones',
           description: 'a drunk super girl',
           modified: new Date('10/12/1993'),
-          thumbnail: mockComicThumbnail(),
+          thumbnail: mockThumbnail(),
           url: 'comicDetailsURL',
         },
       ],

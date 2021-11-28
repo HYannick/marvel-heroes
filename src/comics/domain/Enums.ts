@@ -1,4 +1,4 @@
-export enum ComicUrl {
+export enum ComicUrlType {
   DETAIL = 'detail',
   PURCHASE = 'purchase',
   READER = 'reader',

@@ -1,4 +1,5 @@
-import { Comic, ComicThumbnail } from '@/comics/domain/Comic';
+import { Comic } from '@/comics/domain/Comic';
+import { Thumbnail } from '@/common/domain/Thumbnail';
 
 export class ComicView {
   constructor(
@@ -6,7 +7,7 @@ export class ComicView {
     public readonly title: string,
     public readonly description: string,
     public readonly modified: Date,
-    public readonly thumbnail: ComicThumbnail,
+    public readonly thumbnail: Thumbnail,
     public readonly url: string
   ) {}
 

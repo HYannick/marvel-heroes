@@ -1,7 +1,7 @@
 import { Comic, ComicProperties } from '@/comics/domain/Comic';
-import { mockComicThumbnail } from '@unit/comics/domain/fixtures/comic.fixtures';
+import { mockThumbnail } from '@unit/common/domain/fixtures/thumbnail.fixtures';
 
-const mockedHeroThumbnail = mockComicThumbnail('ms-marvel', 'jpg');
+const mockedHeroThumbnail = mockThumbnail('ms-marvel', 'jpg');
 const comicProperties: ComicProperties = {
   id: 1234,
   title: 'Ms Marvel',

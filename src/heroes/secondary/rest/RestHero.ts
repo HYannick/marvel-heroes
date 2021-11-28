@@ -1,47 +1,28 @@
-import { Hero } from '@/heroes/domain/Hero';
+import { Hero, HeroUrlType } from '@/heroes/domain/Hero';
+import { RestThumbnail } from '@/common/secondary/rest/RestThumbnail';
+import { RestUrl } from '@/common/secondary/rest/RestUrl';
 
-export type RestHeroThumbnail = { path: string; extension: string };
 export class RestHero {
   constructor(
     public readonly id: number,
     public readonly name: string,
     public readonly description: string,
     public readonly modified: string,
-    public readonly thumbnail: RestHeroThumbnail
+    public readonly thumbnail: RestThumbnail,
+    public readonly urls: RestUrl[]
   ) {}
 
   static toDomain(restHero: RestHero): Hero {
-    const { path, extension } = restHero.thumbnail;
     return Hero.fromProperties({
       id: restHero.id,
       name: restHero.name,
       description: restHero.description,
-      thumbnail: {
-        portrait: {
-          small: `${path}/portrait_small.${extension}`,
-          medium: `${path}/portrait_medium.${extension}`,
-          xlarge: `${path}/portrait_xlarge.${extension}`,
-          fantastic: `${path}/portrait_fantastic.${extension}`,
-          uncanny: `${path}/portrait_uncanny.${extension}`,
-        },
-        standard: {
-          small: `${path}/standard_small.${extension}`,
-          medium: `${path}/standard_medium.${extension}`,
-          xlarge: `${path}/standard_xlarge.${extension}`,
-          fantastic: `${path}/standard_fantastic.${extension}`,
-          uncanny: `${path}/standard_uncanny.${extension}`,
-        },
-        landscape: {
-          small: `${path}/landscape_small.${extension}`,
-          medium: `${path}/landscape_medium.${extension}`,
-          xlarge: `${path}/landscape_xlarge.${extension}`,
-          fantastic: `${path}/landscape_fantastic.${extension}`,
-          uncanny: `${path}/landscape_uncanny.${extension}`,
-        },
-        fullsize: `${path}.${extension}`,
-        detail: `${path}/detail.${extension}`,
-      },
+      thumbnail: RestThumbnail.toDomain(restHero.thumbnail),
       modified: new Date(restHero.modified),
+      urls: restHero.urls.map(url => ({
+        type: url.type as HeroUrlType,
+        url: url.url,
+      })),
     });
   }
 }

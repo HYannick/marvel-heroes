@@ -1,13 +1,18 @@
-import { Hero, HeroProperties } from '@/heroes/domain/Hero';
-import { mockHeroThumbnail } from '@unit/hero/fixtures/hero.fixtures';
+import { Hero, HeroProperties, HeroUrlType } from '@/heroes/domain/Hero';
+import { mockThumbnail } from '@unit/common/domain/fixtures/thumbnail.fixtures';
 
-const mockedHeroThumbnail = mockHeroThumbnail('ms-marvel', 'jpg');
 const heroProperties: HeroProperties = {
   id: 1234,
   name: 'Ms Marvel',
-  thumbnail: mockedHeroThumbnail,
+  thumbnail: mockThumbnail('ms-marvel'),
   modified: new Date('10/12/1990'),
   description: 'The true hero',
+  urls: [
+    {
+      type: HeroUrlType.DETAIL,
+      url: 'detailsUrl',
+    },
+  ],
 };
 
 describe('Hero', () => {
@@ -44,6 +49,12 @@ describe('Hero', () => {
       },
       modified: new Date('10/12/1990'),
       description: 'The true hero',
+      urls: [
+        {
+          type: HeroUrlType.DETAIL,
+          url: 'detailsUrl',
+        },
+      ],
     });
   });
 });
