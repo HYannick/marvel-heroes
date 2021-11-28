@@ -1,7 +1,5 @@
-import Vuex, { createStore, Store } from "vuex";
-import { appModule } from "@/store/app";
-import { createApp } from "vue";
-import { Vue } from "vue-class-component";
+import Vuex, { createStore } from 'vuex';
+import { appModule } from '@/app/secondary/vuex';
 
 const generateStore = () =>
   createStore({
@@ -9,16 +7,6 @@ const generateStore = () =>
       app: appModule(),
     },
   });
-
-export class dumbComponent extends Vue {}
-
-const generateStoreOutOfVueContext = () => {
-  const localVue = createApp(dumbComponent);
-  localVue.use(generateStore());
-  return generateStore();
-};
-
 export const StoreHelper = {
   generateStore,
-  generateStoreOutOfVueContext,
 };

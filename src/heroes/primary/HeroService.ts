@@ -7,15 +7,22 @@ import { HeroId } from '@/heroes/domain/HeroId';
 import { GetHeroDetailsUseCase } from '@/heroes/primary/use-cases/GetHeroDetailsUseCase';
 import { GetHeroComicsUseCase } from '@/heroes/primary/use-cases/GetHeroComicsUseCase';
 import { ComicView } from '@/comics/primary/view/ComicView';
+import AppStore from '@/app/secondary/vuex/AppStore';
+import { Hero } from '@/heroes/domain/Hero';
 
 export class HeroService {
   private getHeroesUseCase: GetHeroesUseCase;
   private getHeroDetailsUseCase: GetHeroDetailsUseCase;
   private getHeroComicsUseCase: GetHeroComicsUseCase;
-  constructor(private heroRepository: HeroRepository) {
+
+  constructor(private heroRepository: HeroRepository, private appStore: AppStore) {
     this.getHeroesUseCase = new GetHeroesUseCase(heroRepository);
     this.getHeroDetailsUseCase = new GetHeroDetailsUseCase(heroRepository);
     this.getHeroComicsUseCase = new GetHeroComicsUseCase(heroRepository);
+  }
+
+  get heroDetails() {
+    return this.appStore.currentHeroDetails && HeroView.fromDomain(Hero.fromProperties(this.appStore.currentHeroDetails));
   }
 
   async getHeroes(pagination: RestPagination): Promise<Page<HeroView>> {
@@ -28,5 +35,9 @@ export class HeroService {
 
   async getHeroComics(heroId: HeroId): Promise<Page<ComicView>> {
     return await this.getHeroComicsUseCase.execute(heroId);
+  }
+
+  async resetHeroDetails() {
+    return await this.appStore.resetCurrentHeroDetails();
   }
 }

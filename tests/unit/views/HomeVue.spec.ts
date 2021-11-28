@@ -4,13 +4,19 @@ import { createHeroView } from '@unit/hero/fixtures/hero.fixtures';
 
 let wrapper: VueWrapper<HomeComponent>;
 let homeComponent: HomeComponent;
+let heroService: any;
 
 const heroView = createHeroView();
 
-const createWrapper = () => {
+const createWrapper = (heroService: any) => {
   wrapper = shallowMount(HomeVue, {
     props: {
       details: heroView,
+    },
+    global: {
+      provide: {
+        heroService,
+      },
     },
   });
   homeComponent = wrapper.vm;
@@ -19,7 +25,12 @@ const createWrapper = () => {
 
 describe('HomeVue', () => {
   beforeEach(() => {
-    createWrapper();
+    heroService = {
+      heroDetails: createHeroView(),
+      getHeroDetails: jest.fn(),
+      resetHeroDetails: jest.fn(),
+    };
+    createWrapper(heroService);
   });
 
   it('should be a vue instance', () => {
@@ -27,16 +38,16 @@ describe('HomeVue', () => {
   });
 
   it('should not have currentDetails', () => {
-    expect(homeComponent.currentDetails).toBeNull();
+    expect(homeComponent.currentDetails).toEqual(createHeroView());
   });
 
   it('should set current details', () => {
     homeComponent.setCurrentDetails(heroView);
-    expect(homeComponent.currentDetails).toEqual(heroView);
+    expect(heroService.getHeroDetails).toHaveBeenCalledWith(1234);
   });
 
   it('should reset current details', () => {
     homeComponent.resetDetails();
-    expect(homeComponent.currentDetails).toBeNull();
+    expect(heroService.resetHeroDetails).toHaveBeenCalledTimes(1);
   });
 });

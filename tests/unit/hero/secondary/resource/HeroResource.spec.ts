@@ -4,11 +4,15 @@ import { createRestComic } from '@unit/comics/domain/fixtures/comic.fixtures';
 import { mockThumbnail } from '@unit/common/domain/fixtures/thumbnail.fixtures';
 
 let axios: any;
+let appStore: any;
 
 describe('Hero Resource', () => {
   beforeEach(() => {
     axios = {
       get: jest.fn(),
+    };
+    appStore = {
+      setCurrentHeroDetails: jest.fn().mockResolvedValue(null),
     };
   });
 
@@ -23,7 +27,7 @@ describe('Hero Resource', () => {
         results: [],
       },
     });
-    const heroResource = new HeroResource(axios);
+    const heroResource = new HeroResource(axios, appStore);
     const params = { limit: 20 };
     const heroesList = await heroResource.getHeroes(params);
     expect(heroesList).toEqual({
@@ -43,7 +47,7 @@ describe('Hero Resource', () => {
         },
       },
     });
-    const heroResource = new HeroResource(axios);
+    const heroResource = new HeroResource(axios, appStore);
     const heroDetails = await heroResource.getHeroDetails(1234);
     expect(heroDetails).toBeNull();
   });
@@ -68,7 +72,7 @@ describe('Hero Resource', () => {
         },
       },
     });
-    const heroResource = new HeroResource(axios);
+    const heroResource = new HeroResource(axios, appStore);
     const params = { limit: 20, offset: 20 };
     const heroesList = await heroResource.getHeroes(params);
     expect(axios.get).toHaveBeenCalledTimes(1);
@@ -131,21 +135,8 @@ describe('Hero Resource', () => {
   });
 
   it('should get hero details', async () => {
-    expect.assertions(3);
-    axios.get.mockResolvedValue({
-      data: {
-        data: {
-          results: [createRestHero()],
-        },
-      },
-    });
-    const heroResource = new HeroResource(axios);
-    const heroDetails = await heroResource.getHeroDetails(12345);
-    expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith(`${process.env.VUE_APP_BACKEND_BASE_URL}/v1/public/characters/12345`, {
-      params: { apikey: 'c93257b8bd3769e578d087c99c2ddadc' },
-    });
-    expect(heroDetails).toEqual({
+    expect.assertions(4);
+    const expectedResult = {
       id: 1234,
       name: 'Jessica Jones',
       description: 'a drunk super girl',
@@ -165,7 +156,22 @@ describe('Hero Resource', () => {
           url: 'comicLinkUrl',
         },
       ],
+    };
+    axios.get.mockResolvedValue({
+      data: {
+        data: {
+          results: [createRestHero()],
+        },
+      },
     });
+    const heroResource = new HeroResource(axios, appStore);
+    const heroDetails = await heroResource.getHeroDetails(12345);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalledWith(`${process.env.VUE_APP_BACKEND_BASE_URL}/v1/public/characters/12345`, {
+      params: { apikey: 'c93257b8bd3769e578d087c99c2ddadc' },
+    });
+    expect(appStore.setCurrentHeroDetails).toHaveBeenCalledWith(expectedResult);
+    expect(heroDetails).toEqual(expectedResult);
   });
 
   it('should fail to get hero comics', async () => {
@@ -180,7 +186,7 @@ describe('Hero Resource', () => {
         },
       },
     });
-    const heroResource = new HeroResource(axios);
+    const heroResource = new HeroResource(axios, appStore);
     const heroComics = await heroResource.getHeroComics(12345);
     expect(axios.get).toHaveBeenCalledTimes(1);
     expect(axios.get).toHaveBeenCalledWith(`${process.env.VUE_APP_BACKEND_BASE_URL}/v1/public/characters/12345/comics`, {
@@ -207,7 +213,7 @@ describe('Hero Resource', () => {
         },
       },
     });
-    const heroResource = new HeroResource(axios);
+    const heroResource = new HeroResource(axios, appStore);
     const heroComics = await heroResource.getHeroComics(12345);
     expect(axios.get).toHaveBeenCalledTimes(1);
     expect(axios.get).toHaveBeenCalledWith(`${process.env.VUE_APP_BACKEND_BASE_URL}/v1/public/characters/12345/comics`, {

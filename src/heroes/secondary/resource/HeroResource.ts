@@ -8,9 +8,10 @@ import { RestPagination } from '@/common/secondary/rest/RestPagination';
 import { HeroId } from '@/heroes/domain/HeroId';
 import { Comic } from '@/comics/domain/Comic';
 import { RestComic } from '@/comics/secondary/rest/RestComic';
+import AppStore from '@/app/secondary/vuex/AppStore';
 
 export class HeroResource implements HeroRepository {
-  constructor(private axios: AxiosInstance) {}
+  constructor(private axios: AxiosInstance, private appStore: AppStore) {}
 
   async getHeroes(params: RestPagination): Promise<Page<Hero>> {
     try {
@@ -50,6 +51,8 @@ export class HeroResource implements HeroRepository {
           apikey: process.env.VUE_APP_BACKEND_API_KEY,
         },
       });
+
+      await this.appStore.setCurrentHeroDetails(RestHero.toDomain(results[0]).properties);
 
       return RestHero.toDomain(results[0]);
     } catch (e) {

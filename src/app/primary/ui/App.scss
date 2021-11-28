@@ -1,6 +1,7 @@
+@import "./src/normalize";
 @font-face {
   font-family: "StarGradientRail";
-  src: local("StarGradientRail"), url("./fonts/StarGuardHalftone-YDK8.otf") format("opentype");
+  src: local("StarGradientRail"), url("../../../fonts/StarGuardHalftone-YDK8.otf") format("opentype");
 }
 
 body {
@@ -61,7 +62,7 @@ button, .button {
   text-align: center;
   &:after {
     content: '';
-    background: url('./assets/background.jpeg') center center no-repeat;
+    background: url('../../../assets/background.jpeg') center center no-repeat;
     background-size: cover;
     position: fixed;
     top: 0;
