@@ -15,7 +15,10 @@ export class HeroService {
   private getHeroDetailsUseCase: GetHeroDetailsUseCase;
   private getHeroComicsUseCase: GetHeroComicsUseCase;
 
-  constructor(private heroRepository: HeroRepository, private appStore: AppStore) {
+  constructor(
+    private heroRepository: HeroRepository,
+    private appStore: AppStore
+  ) {
     this.getHeroesUseCase = new GetHeroesUseCase(heroRepository);
     this.getHeroDetailsUseCase = new GetHeroDetailsUseCase(heroRepository);
     this.getHeroComicsUseCase = new GetHeroComicsUseCase(heroRepository);

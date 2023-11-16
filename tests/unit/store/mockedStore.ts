@@ -1,4 +1,4 @@
-import Vuex, { createStore } from 'vuex';
+import { createStore } from 'vuex';
 import { appModule } from '@/app/secondary/vuex';
 
 const generateStore = () =>

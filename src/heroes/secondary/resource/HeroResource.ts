@@ -11,7 +11,10 @@ import { RestComic } from '@/comics/secondary/rest/RestComic';
 import AppStore from '@/app/secondary/vuex/AppStore';
 
 export class HeroResource implements HeroRepository {
-  constructor(private axios: AxiosInstance, private appStore: AppStore) {}
+  constructor(
+    private axios: AxiosInstance,
+    private appStore: AppStore
+  ) {}
 
   async getHeroes(params: RestPagination): Promise<Page<Hero>> {
     try {

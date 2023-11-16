@@ -1,7 +1,10 @@
 import { Thumbnail } from '@/common/domain/Thumbnail';
 
 export class RestThumbnail {
-  constructor(public readonly path: string, public readonly extension: string) {}
+  constructor(
+    public readonly path: string,
+    public readonly extension: string
+  ) {}
 
   static toDomain({ path, extension }: RestThumbnail): Thumbnail {
     return {
