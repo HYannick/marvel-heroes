@@ -1,34 +1,5 @@
-# marvel-heroes
+# Marvel Heroes
+![Screenshot 2023-11-16 at 13 42 03 (2)](https://github.com/HYannick/marvel-heroes/assets/2854982/b677d276-3953-44bf-b602-19ca8b9a0317)
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Simple Heroes/Villains fetching app, to try some TDD and Hexagonal Architecture with Vue.
+You can check it here -> https://marvel-heroes-chi.vercel.app/
